@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page 
 @model Proiect1.Pages.Toys.IndexModel
 
 @{
@@ -14,7 +14,9 @@
     <thead>
         <tr>
             <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ToySort">
                 @Html.DisplayNameFor(model => model.ToyT[0].Toy)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ToyT[0].For.For)
@@ -23,7 +25,9 @@
                 @Html.DisplayNameFor(model => model.ToyT[0].Price)
             </th>
             <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CategorySort">
                 @Html.DisplayNameFor(model => model.ToyT[0].Category.Category)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ToyT[0].Brand.Brand)

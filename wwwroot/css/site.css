@@ -7,6 +7,13 @@ html {
     font-size: 16px;
   }
 }
+body {
+    background-color:lightcyan;
+}
+
+.navbar-custom {
+    background-color:lightgreen;
+}
 
 html {
   position: relative;
