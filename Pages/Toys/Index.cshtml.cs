@@ -24,10 +24,11 @@ namespace Proiect1.Pages.Toys
         public string ToySort { get; set; }
         public string CategorySort { get; set; }
         public string CurrentFilter { get; set; }
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, string searchString)
         {
             ToySort = String.IsNullOrEmpty(sortOrder) ? "toy_desc" : "";
             CategorySort = String.IsNullOrEmpty(sortOrder) ? "category_desc" : "";
+            CurrentFilter = searchString;
 
             if (_context.ToyT != null)
             {
@@ -36,17 +37,6 @@ namespace Proiect1.Pages.Toys
                     .Include(a => a.Category)
                     .Include(a => a.Brand)
                     .ToListAsync();
-            }
-            switch (sortOrder)
-            {
-                case "toy_desc":
-                    ToyData.Toys = ToyData.Toys.OrderByDescending(s =>
-                   s.Toy);
-                    break;
-                case "category_desc":
-                    ToyData.Toys = ToyData.Toys.OrderByDescending(s =>
-                   s.Category);
-                    break;
             }
         }
     }
