@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>ToyT</h4>
+<h4>Toys</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,14 +20,21 @@
                 <span asp-validation-for="ToyT.Toy" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ToyT.For" class="control-label"></label>
-                <input asp-for="ToyT.For" class="form-control" />
-                <span asp-validation-for="ToyT.For" class="text-danger"></span>
+                <label asp-for="ToyT.ForID" class="control-label">For</label>
+                <select asp-for="ToyT.ForID" class="form-control" asp-items="ViewBag.ForID">
+                </select>
+                <span asp-validation-for="ToyT.ForID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToyT.Price" class="control-label"></label>
                 <input asp-for="ToyT.Price" class="form-control" />
                 <span asp-validation-for="ToyT.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToyT.CategoryID" class="control-label">Category</label>
+                <select asp-for="ToyT.CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
+                </select>
+                <span asp-validation-for="ToyT.CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToyT.BrandID" class="control-label">Brand</label>

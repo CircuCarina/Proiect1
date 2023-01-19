@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proiect1.Data;
 using Proiect1.Models;
 
-namespace Proiect1.Pages.Toys
+namespace Proiect1.Pages.Categories
 {
     public class CreateModel : PageModel
     {
@@ -22,14 +21,11 @@ namespace Proiect1.Pages.Toys
 
         public IActionResult OnGet()
         {
-            ViewData["ForID"] = new SelectList(_context.Set<ForF>(), "ID", "For");
-            ViewData["CategoryID"] = new SelectList(_context.Set<CategoryC>(), "ID", "Category");
-            ViewData["BrandID"] = new SelectList(_context.Set<BrandB>(), "ID", "Brand");
             return Page();
         }
 
         [BindProperty]
-        public ToyT ToyT { get; set; }
+        public CategoryC CategoryC { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -40,7 +36,7 @@ namespace Proiect1.Pages.Toys
                 return Page();
             }
 
-            _context.ToyT.Add(ToyT);
+            _context.CategoryC.Add(CategoryC);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect1.Data;
 using Proiect1.Models;
 
-namespace Proiect1.Pages.Toys
+namespace Proiect1.Pages.Categories
 {
     public class DetailsModel : PageModel
     {
@@ -19,27 +19,23 @@ namespace Proiect1.Pages.Toys
             _context = context;
         }
 
-      public ToyT ToyT { get; set; }
+      public CategoryC CategoryC { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.ToyT == null)
+            if (id == null || _context.CategoryC == null)
             {
                 return NotFound();
             }
 
-            var toyt = await _context.ToyT
-                .Include(a => a.For)
-                .Include(a => a.Category)
-                .Include(a => a.Brand)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (toyt == null)
+            var categoryc = await _context.CategoryC.FirstOrDefaultAsync(m => m.ID == id);
+            if (categoryc == null)
             {
                 return NotFound();
             }
             else 
             {
-                ToyT = toyt;
+                CategoryC = categoryc;
             }
             return Page();
         }

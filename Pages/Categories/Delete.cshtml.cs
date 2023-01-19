@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect1.Data;
 using Proiect1.Models;
 
-namespace Proiect1.Pages.Toys
+namespace Proiect1.Pages.Categories
 {
     public class DeleteModel : PageModel
     {
@@ -20,44 +20,40 @@ namespace Proiect1.Pages.Toys
         }
 
         [BindProperty]
-      public ToyT ToyT { get; set; }
+      public CategoryC CategoryC { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.ToyT == null)
+            if (id == null || _context.CategoryC == null)
             {
                 return NotFound();
             }
 
-            var toyt = await _context.ToyT
-                .Include(a => a.For)
-                .Include(a => a.Category)
-                .Include(a => a.Brand)
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var categoryc = await _context.CategoryC.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (toyt == null)
+            if (categoryc == null)
             {
                 return NotFound();
             }
             else 
             {
-                ToyT = toyt;
+                CategoryC = categoryc;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.ToyT == null)
+            if (id == null || _context.CategoryC == null)
             {
                 return NotFound();
             }
-            var toyt = await _context.ToyT.FindAsync(id);
+            var categoryc = await _context.CategoryC.FindAsync(id);
 
-            if (toyt != null)
+            if (categoryc != null)
             {
-                ToyT = toyt;
-                _context.ToyT.Remove(ToyT);
+                CategoryC = categoryc;
+                _context.CategoryC.Remove(CategoryC);
                 await _context.SaveChangesAsync();
             }
 

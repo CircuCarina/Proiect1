@@ -1,5 +1,5 @@
 ﻿@page
-@model Proiect1.Pages.For.IndexModel
+@model Proiect1.Pages.Categories.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,17 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ForF[0].For)
+                @Html.DisplayNameFor(model => model.CategoryC[0].Category)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.ForF) 
-{
+@foreach (var item in Model.CategoryC) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.For)
+                @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

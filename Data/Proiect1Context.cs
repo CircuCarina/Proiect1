@@ -19,5 +19,7 @@ namespace Proiect1.Data
         public DbSet<Proiect1.Models.BrandB> BrandB { get; set; }
 
         public DbSet<Proiect1.Models.ForF> ForF { get; set; }
+
+        public DbSet<Proiect1.Models.CategoryC> CategoryC { get; set; }
     }
 }

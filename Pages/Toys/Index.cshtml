@@ -1,11 +1,11 @@
-﻿@page
+﻿@page "/"
 @model Proiect1.Pages.Toys.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Toys</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -17,10 +17,13 @@
                 @Html.DisplayNameFor(model => model.ToyT[0].Toy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ToyT[0].For)
+                @Html.DisplayNameFor(model => model.ToyT[0].For.For)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ToyT[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToyT[0].Category.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ToyT[0].Brand.Brand)
@@ -35,14 +38,17 @@
                 @Html.DisplayFor(modelItem => item.Toy)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.For)
+                @Html.DisplayFor(modelItem => item.For.For)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Brand.Brand)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Brand)
+            </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

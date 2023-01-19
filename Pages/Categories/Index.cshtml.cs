@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect1.Data;
 using Proiect1.Models;
 
-namespace Proiect1.Pages.Toys
+namespace Proiect1.Pages.Categories
 {
     public class IndexModel : PageModel
     {
@@ -19,17 +19,13 @@ namespace Proiect1.Pages.Toys
             _context = context;
         }
 
-        public IList<ToyT> ToyT { get;set; } = default!;
+        public IList<CategoryC> CategoryC { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.ToyT != null)
+            if (_context.CategoryC != null)
             {
-                ToyT = await _context.ToyT
-                    .Include(a => a.For)
-                    .Include(a => a.Category)
-                    .Include(a => a.Brand)
-                    .ToListAsync();
+                CategoryC = await _context.CategoryC.ToListAsync();
             }
         }
     }

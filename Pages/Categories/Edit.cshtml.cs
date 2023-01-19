@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect1.Data;
 using Proiect1.Models;
 
-namespace Proiect1.Pages.Toys
+namespace Proiect1.Pages.Categories
 {
     public class EditModel : PageModel
     {
@@ -21,24 +21,21 @@ namespace Proiect1.Pages.Toys
         }
 
         [BindProperty]
-        public ToyT ToyT { get; set; } = default!;
+        public CategoryC CategoryC { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.ToyT == null)
+            if (id == null || _context.CategoryC == null)
             {
                 return NotFound();
             }
 
-            var toyt =  await _context.ToyT.FirstOrDefaultAsync(m => m.ID == id);
-            if (toyt == null)
+            var categoryc =  await _context.CategoryC.FirstOrDefaultAsync(m => m.ID == id);
+            if (categoryc == null)
             {
                 return NotFound();
             }
-            ToyT = toyt;
-            ViewData["ForID"] = new SelectList(_context.Set<ForF>(), "ID", "For");
-            ViewData["CategoryID"] = new SelectList(_context.Set<CategoryC>(), "ID", "Category");
-            ViewData["BrandID"] = new SelectList(_context.Set<BrandB>(), "ID", "Brand");
+            CategoryC = categoryc;
             return Page();
         }
 
@@ -51,7 +48,7 @@ namespace Proiect1.Pages.Toys
                 return Page();
             }
 
-            _context.Attach(ToyT).State = EntityState.Modified;
+            _context.Attach(CategoryC).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +56,7 @@ namespace Proiect1.Pages.Toys
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ToyTExists(ToyT.ID))
+                if (!CategoryCExists(CategoryC.ID))
                 {
                     return NotFound();
                 }
@@ -72,9 +69,9 @@ namespace Proiect1.Pages.Toys
             return RedirectToPage("./Index");
         }
 
-        private bool ToyTExists(int id)
+        private bool CategoryCExists(int id)
         {
-          return _context.ToyT.Any(e => e.ID == id);
+          return _context.CategoryC.Any(e => e.ID == id);
         }
     }
 }

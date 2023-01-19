@@ -13,6 +13,8 @@ namespace Proiect1.Models
 
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
+        public int? CategoryID { get; set; }
+        public CategoryC? Category { get; set; }
         public int? BrandID { get; set; }
         public BrandB? Brand { get; set; }
     }

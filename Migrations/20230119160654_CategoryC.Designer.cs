@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect1.Data;
 
@@ -11,9 +12,10 @@ using Proiect1.Data;
 namespace Proiect1.Migrations
 {
     [DbContext(typeof(Proiect1Context))]
-    partial class Proiect1ContextModelSnapshot : ModelSnapshot
+    [Migration("20230119160654_CategoryC")]
+    partial class CategoryC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,6 +75,29 @@ namespace Proiect1.Migrations
                     b.ToTable("ForF");
                 });
 
+            modelBuilder.Entity("Proiect1.Models.ToyCategory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToyID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.HasIndex("ToyID");
+
+                    b.ToTable("ToyCategory");
+                });
+
             modelBuilder.Entity("Proiect1.Models.ToyT", b =>
                 {
                     b.Property<int>("ID")
@@ -82,9 +107,6 @@ namespace Proiect1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int?>("BrandID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<int?>("ForID")
@@ -101,11 +123,28 @@ namespace Proiect1.Migrations
 
                     b.HasIndex("BrandID");
 
-                    b.HasIndex("CategoryID");
-
                     b.HasIndex("ForID");
 
                     b.ToTable("ToyT");
+                });
+
+            modelBuilder.Entity("Proiect1.Models.ToyCategory", b =>
+                {
+                    b.HasOne("Proiect1.Models.CategoryC", "Category")
+                        .WithMany("ToyCategories")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proiect1.Models.ToyT", "Toy")
+                        .WithMany()
+                        .HasForeignKey("ToyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Toy");
                 });
 
             modelBuilder.Entity("Proiect1.Models.ToyT", b =>
@@ -114,17 +153,11 @@ namespace Proiect1.Migrations
                         .WithMany("Toys")
                         .HasForeignKey("BrandID");
 
-                    b.HasOne("Proiect1.Models.CategoryC", "Category")
-                        .WithMany("Toys")
-                        .HasForeignKey("CategoryID");
-
                     b.HasOne("Proiect1.Models.ForF", "For")
                         .WithMany("Toys")
                         .HasForeignKey("ForID");
 
                     b.Navigation("Brand");
-
-                    b.Navigation("Category");
 
                     b.Navigation("For");
                 });
@@ -136,7 +169,7 @@ namespace Proiect1.Migrations
 
             modelBuilder.Entity("Proiect1.Models.CategoryC", b =>
                 {
-                    b.Navigation("Toys");
+                    b.Navigation("ToyCategories");
                 });
 
             modelBuilder.Entity("Proiect1.Models.ForF", b =>
