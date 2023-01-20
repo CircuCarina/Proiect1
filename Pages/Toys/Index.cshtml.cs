@@ -19,7 +19,6 @@ namespace Proiect1.Pages.Toys
         {
             _context = context;
         }
-
         public IList<ToyT> ToyT { get; set; } = default!;
         public string ToySort { get; set; }
         public string CategorySort { get; set; }
@@ -30,14 +29,14 @@ namespace Proiect1.Pages.Toys
             CategorySort = String.IsNullOrEmpty(sortOrder) ? "category_desc" : "";
             CurrentFilter = searchString;
 
-            if (_context.ToyT != null)
-            {
-                ToyT = await _context.ToyT
-                    .Include(a => a.For)
-                    .Include(a => a.Category)
-                    .Include(a => a.Brand)
-                    .ToListAsync();
-            }
+                if (_context.ToyT != null)
+                {
+                    ToyT = await _context.ToyT
+                        .Include(a => a.For)
+                        .Include(a => a.Category)
+                        .Include(a => a.Brand)
+                        .ToListAsync();
+                }
         }
     }
 }
